@@ -1,29 +1,26 @@
-import 'package:flutter_test/flutter_test.dart';
 import 'package:fuel_api/fuel_api.dart';
-import 'package:fuel_api/fuel_api_platform_interface.dart';
-import 'package:fuel_api/fuel_api_method_channel.dart';
-import 'package:plugin_platform_interface/plugin_platform_interface.dart';
-
-class MockFuelApiPlatform
-    with MockPlatformInterfaceMixin
-    implements FuelApiPlatform {
-
-  @override
-  Future<String?> getPlatformVersion() => Future.value('42');
-}
+import 'package:fuel_api/src/client/ed25519_keypair.dart';
+import 'package:test/test.dart';
 
 void main() {
-  final FuelApiPlatform initialPlatform = FuelApiPlatform.instance;
+  test('should copy keypair from constructor', () {
+    final Ed25519Keypair kp1 = Ed25519Keypair.generate();
+    Keypair keypair = Keypair();
+    keypair.secretKey = kp1.secretKey;
+    keypair.publicKey = kp1.publicKey;
+    keypair.mnemonic = kp1.mnemonic;
 
-  test('$MethodChannelFuelApi is the default instance', () {
-    expect(initialPlatform, isInstanceOf<MethodChannelFuelApi>());
+    final kp2 = Ed25519Keypair(keypair); // Ed25519Keypair and Keypair different types
+
+    expect(kp1.publicKey, kp2.publicKey);
   });
 
-  test('getPlatformVersion', () async {
-    FuelApi fuelApiPlugin = FuelApi();
-    MockFuelApiPlatform fakePlatform = MockFuelApiPlatform();
-    FuelApiPlatform.instance = fakePlatform;
+  test('should create keypair from secret key', () {
+    final kp1 = Ed25519Keypair.generate();
+    final kp2 = Ed25519Keypair.fromSecretKey(kp1.secretKey);
 
-    expect(await fuelApiPlugin.getPlatformVersion(), '42');
+    expect(kp1.publicKey, kp2.publicKey);
   });
 }
+
+

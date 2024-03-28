@@ -1,8 +1,4 @@
+library fuel_api;
 
-import 'fuel_api_platform_interface.dart';
-
-class FuelApi {
-  Future<String?> getPlatformVersion() {
-    return FuelApiPlatform.instance.getPlatformVersion();
-  }
-}
+export 'src/rpc_client.dart';
+export 'src/client/ed25519_keypair.dart';
