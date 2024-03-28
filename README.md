@@ -36,6 +36,8 @@ Now in your Dart code, you can use:
 import 'package:fuel_api/fuel_api.dart';
 ```
 
+## Usage
+See [examples](EXAMPLE.md) on how to use library.
 
 ## Contributions
 This library developed by [Kelecorix, Inc](https://github.com/kelecorix). Contributions are welcome, open new PR or submit new issue.
