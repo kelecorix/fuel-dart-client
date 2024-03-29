@@ -3,7 +3,7 @@
 
 ![Pub Version](https://img.shields.io/pub/v/fuel_api)
 ![GitHub](https://img.shields.io/github/license/kelecorix/fuel-dart-client)
-[![Tests](https://github.com/kelecorix/fuel-dart-client/actions/workflows/dart.yml/badge.svg)](https://github.com/kompendium-ano/fuel-dart-client/actions/workflows/dart.yml)
+[![Tests](https://github.com/kelecorix/fuel-dart-client/actions/workflows/dart.yml/badge.svg)](https://github.com/kelecorix/fuel-dart-client/actions/workflows/dart.yml)
 
 Dart client for [Fuel](https://fuel.network/) blockchain, a modern blockchain created as an operating system 
 for Ethereum rollups. Fuel allows rollups to solve for PSI (parallelization, state minimized execution, interoperability) without making any sacrifices.
