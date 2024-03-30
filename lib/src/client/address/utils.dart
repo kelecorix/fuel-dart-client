@@ -5,12 +5,14 @@ import 'package:convert/convert.dart';
 const FUEL_BECH32_HRP_PREFIX = 'fuel';
 
 /// Decodes a Bech32 address string into Decoded
-Decoded fromBech32(String address) {
-  return bech32Decode(address);
+fromBech32(String address) {
+  return segwit.decode(address);
 }
 
 /// Converts a B256 address string into Bech32
 String toBech32(String address) {
+  var otherAddress = Segwit('bc', 1, [0, 0]);
+  print(segwit.encode(otherAddress));
   return bech32Encode(
     FUEL_BECH32_HRP_PREFIX,
     bech32.convertBits(hex.decode(address), 8, 5, true),
@@ -27,4 +29,6 @@ bool isBech32(dynamic address) {
 bool isB256(String address) {
   return address.length == 66 && RegExp(r'^(0x)[0-9a-f]{64}$', caseSensitive: false).hasMatch(address);
 }
+
+
 
