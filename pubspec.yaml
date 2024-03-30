@@ -8,9 +8,9 @@ environment:
 
 dependencies:
   crypto: ^3.0.2
-  bech32: ^0.2.2
-  base58check: ^2.0.0
+  bitcoin_bech32_ng: ^0.3.0
   bitcoin_bip44_ng: ^0.1.6
+  base58check: ^2.0.0
   bip39: ^1.0.6
   bs58: ^1.0.2
   ed25519_edwards: ^0.3.1
