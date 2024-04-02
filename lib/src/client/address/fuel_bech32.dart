@@ -123,3 +123,7 @@ List<int> _convertBits(List<int> data, int from, int to, bool pad) {
   }
   return result;
 }
+
+List<int> toWords(List<int> data ) {
+  return _convertBits(data, 8, 5, true);
+}

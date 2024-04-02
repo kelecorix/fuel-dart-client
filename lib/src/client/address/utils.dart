@@ -1,28 +1,37 @@
-import 'package:bech32/bech32.dart';
-import 'package:convert/convert.dart';
+import 'package:fuel_api/src/client/address/fuel_bech32.dart';
+import 'package:bitcoin_bech32_ng/bitcoin_bech32_ng.dart';
+import 'dart:convert' show utf8;
+
+import 'package:fuel_api/src/client/utils/utils.dart';
 
 /// Fuel Network HRP (human-readable part) for bech32 encoding
 const FUEL_BECH32_HRP_PREFIX = 'fuel';
 
 /// Decodes a Bech32 address string into Decoded
-fromBech32(String address) {
-  return segwit.decode(address);
+Fuel fromBech32(String address) {
+  var d = fuel.decode(address);
+  return d;
 }
+
+// Get String representation of Bech32 addr
+String fromBench32Pub(String address){
+  return fuel.decode(address).scriptPubKey;
+}
+
 
 /// Converts a B256 address string into Bech32
 String toBech32(String address) {
-  var otherAddress = Segwit('bc', 1, [0, 0]);
-  print(segwit.encode(otherAddress));
-  return bech32Encode(
-    FUEL_BECH32_HRP_PREFIX,
-    bech32.convertBits(hex.decode(address), 8, 5, true),
-  );
+  List<int> data = utf8.encode(address);
+  return fuel.encode(Fuel(FUEL_BECH32_HRP_PREFIX, data.asUint8List()));
 }
 
 /// Determines if a given string is Bech32 format
-bool isBech32(dynamic address) {
-  if (address is! String) return false;
-  return address.startsWith(FUEL_BECH32_HRP_PREFIX) && fromBech32(address).hrp == FUEL_BECH32_HRP_PREFIX;
+bool isBech32(String address) {
+  var a = address.startsWith(FUEL_BECH32_HRP_PREFIX);
+  var h = fromBech32(address).hrp;
+
+  return address.startsWith(FUEL_BECH32_HRP_PREFIX)
+      && fromBech32(address).hrp == FUEL_BECH32_HRP_PREFIX;
 }
 
 /// Determines if a given string is B256 format
@@ -31,4 +40,10 @@ bool isB256(String address) {
 }
 
 
+////////////////////////
+// hexlify
 
+
+
+/////
+/// arrayify
