@@ -1,6 +1,10 @@
+import 'dart:typed_data';
+
 import 'package:fuel_api/src/client/address/fuel_bech32.dart';
 import 'package:bitcoin_bech32_ng/bitcoin_bech32_ng.dart';
+import 'package:fuel_api/src/client/utils/uint.dart';
 import 'dart:convert' show utf8;
+import 'package:hex/hex.dart';
 
 import 'package:fuel_api/src/client/utils/utils.dart';
 
@@ -21,8 +25,15 @@ String fromBench32Pub(String address){
 
 /// Converts a B256 address string into Bech32
 String toBech32(String address) {
-  List<int> data = utf8.encode(address);
-  return fuel.encode(Fuel(FUEL_BECH32_HRP_PREFIX, data.asUint8List()));
+
+  //  bech32m.toWords(arrayify(hexlify(address)))
+
+  String hexAddr = toHexString(address); //HEX.encode(utf8.encode(address));
+  Uint8List data = hexStringtoUint8List(hexAddr);
+
+  var d = arrayify(hexlify(address));
+
+  return fuel.encode(Fuel(FUEL_BECH32_HRP_PREFIX, d));
 }
 
 /// Determines if a given string is Bech32 format

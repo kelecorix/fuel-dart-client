@@ -75,7 +75,7 @@ class FuelValidations {
   }
 
   bool isTooLongProgram(List<int> program) {
-    return program.length > 40;
+    return program.length > 140;
   }
 
   bool isTooShortProgram(List<int> program) {

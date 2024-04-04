@@ -120,14 +120,14 @@ void main() {
   //
   test('is Bech32?', () {
     var res = utils.isBech32(ADDRESS_BECH32);
-    print(res);
+    //print(res);
     expect(res, true);
   });
 
-  test('to Bech32', () {
+  test('toBech32 (b256 to bech32)', () {
     var res = utils.toBech32(ADDRESS_B256);
-    print(res);
-    expect(res, expectedAddress);
+    //print(res);
+    expect(res, ADDRESS_BECH32);
   });
 
   // test('from Bech32?', () {
